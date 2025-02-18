@@ -1,0 +1,39 @@
+.my-email {
+  position: relative;
+}
+
+.my-email .icon {
+  -webkit-transform: rotate(50deg);
+          transform: rotate(50deg);
+  font-size: 25px;
+  position: absolute;
+  bottom: 12px;
+  right: 15px;
+}
+
+@media (max-width: 640px) {
+  .my-email {
+    padding: 0;
+  }
+  .my-email ::-webkit-input-placeholder {
+    font-size: 12px;
+  }
+  .my-email :-ms-input-placeholder {
+    font-size: 12px;
+  }
+  .my-email ::-ms-input-placeholder {
+    font-size: 12px;
+  }
+  .my-email ::placeholder {
+    font-size: 12px;
+  }
+  .my-email .icon {
+    -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+    font-size: 20px;
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+  }
+}
+/*# sourceMappingURL=footer.component.css.map */

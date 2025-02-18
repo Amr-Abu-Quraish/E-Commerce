@@ -1,0 +1,45 @@
+.circle {
+  width: 100px !important ;
+  height: 100px !important;
+  border-radius: 50%;
+}
+
+.main-color{
+  color:  #BB7a3E;
+}
+a {
+  transition: all 0.5s;
+}
+
+a:hover {
+  color: #BB7a3E;
+}
+
+.bg-main {
+  background-color: #BB7a3E;
+}
+
+.bg-second {
+  background-color: #f6f6f6;
+}
+
+.flower {
+
+
+  background-image: url('/images/9f4996ffa889fb2c0ec8a0a75b7a8809.jpeg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  position: relative;
+}
+.layer {
+
+  background-color: rgba(0 ,0,0,0.6);
+
+}
+
+
+
+
+

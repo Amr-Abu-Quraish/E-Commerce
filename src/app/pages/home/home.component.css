@@ -1,0 +1,52 @@
+.main-color {
+  color: #8B5E35;
+}
+
+a {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+a:hover {
+  color: #8B5E35;
+}
+
+.bg-main {
+  background-color: #8B5E35;
+}
+
+.my {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50%;
+}
+
+.heart {
+  position: relative;
+}
+
+.heart::after {
+  position: absolute;
+  top: -35px;
+  right: 150px;
+  background-color: #8B5E35;
+  width: 200px;
+  height: 40px;
+  content: '+ add to cart';
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  opacity: 0;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  text-wrap: nowrap;
+  text-transform: capitalize;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.heart:hover::after {
+  opacity: 1;
+  right: 0;
+}
+/*# sourceMappingURL=home.component.css.map */

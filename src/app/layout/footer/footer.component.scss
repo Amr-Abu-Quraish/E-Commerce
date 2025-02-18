@@ -1,0 +1,27 @@
+.my-email{
+  position: relative;
+}
+.my-email .icon{
+  transform: rotate(50deg);
+  font-size: 25px;
+  position: absolute;
+  bottom: 12px;
+  right: 15px;
+}
+@media (max-width: 640px) {
+  .my-email{
+    padding: 0;
+  }
+  .my-email ::placeholder{
+    font-size: 12px;
+  }
+  .my-email .icon{
+    transform: rotate(50deg);
+    font-size: 20px;
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+  }
+}
+
+

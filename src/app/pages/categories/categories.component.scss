@@ -1,0 +1,53 @@
+
+
+.main-color{
+  color:  #BB7a3E;
+}
+a {
+  transition: all .5s;
+}
+
+a:hover {
+  color: #BB7a3E ;
+}
+
+.bg-main{
+  background-color:#BB7a3E ;
+}
+
+
+
+
+
+
+.plus{
+  position: relative;
+  left: 195px;
+  top: 10px;
+
+}
+
+.plus::after{
+  position: absolute;
+  top: 5px;
+  right: 120px;
+  background-color:#BB7a3E;
+  width: 150px ;
+  height: 40px;
+  content: '+ add to cart';
+  transition: all 1s;
+  opacity: 0;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  text-wrap: nowrap;
+  text-transform: capitalize;
+  font-weight: bold;
+  border-radius: 15px;
+  z-index: 1000;
+}
+
+.plus:hover::after {
+  opacity: 1;
+  right: 50px;
+}

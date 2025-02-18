@@ -1,0 +1,740 @@
+<section class="md:container py-10 px-5 md:p-[70px] mt-5">
+  <div class="w-fit mx-auto flex flex-col items-center">
+    <h2 class="text-2xl font-bold font-serif main-color mt-10">Categories</h2>
+
+    <h3 class="text-4xl font-bold font-serif text-blue-950 mb-10 mt-7">
+      {{ selectedTab }}
+    </h3>
+
+    <p-tabs value="0" class="md:w-full" (change)="updateTabName('')">
+      <p-tablist>
+        <div class="md:flex">
+          <p-tab value="0" (click)="updateTabName('Electronic')"
+            >Electronic</p-tab
+          >
+          <p-tab value="1" (click)="updateTabName('Women\'s Fashion')"
+            >Women's Fashion</p-tab
+          >
+          <p-tab value="2" (click)="updateTabName('Men\'s Fashion')"
+            >Men's Fashion</p-tab
+          >
+          <p-tab value="3" (click)="updateTabName('SuperMarket')"
+            >SuperMarket</p-tab
+          >
+          <p-tab value="4" (click)="updateTabName('Home')">Home</p-tab>
+          <p-tab value="5" (click)="updateTabName('Books')">Books</p-tab>
+          <p-tab value="6" (click)="updateTabName('Mobile')">Mobile</p-tab>
+          <p-tab value="7" (click)="updateTabName('Baby & Toy')"
+            >Baby & Toy</p-tab
+          >
+        </div>
+      </p-tablist>
+      <p-tabpanels class="">
+        <p-tabpanel value="0">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            Electronic <span class="main-color">(7)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (product of products.slice(33,40).reverse(); track product._id
+            ) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-9 left-52 z-20 text-3xl"
+                  (click)="toggleHeart(product)"
+                >
+                  <i
+                    class="fa-heart main-color"
+                    [ngClass]="{
+                      'fa-regular': !isFavorite(product),
+                      'fa-solid': isFavorite(product)
+                    }"
+                  >
+                  </i>
+                </span>
+                <img
+                  [src]="product.imageCover"
+                  class="w-full h-[250px] object-contain"
+                  [alt]="product.title"
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ product.category.name }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ product.title.split(" ", 2).join(" ") }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black">Available Quantity:</span>
+                  {{ product.quantity }}</span
+                >
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ product.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1">{{ product.ratingsAverage }}</span>
+
+                      @for (star of getFullStars(product.ratingsAverage); track
+                      star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(product.ratingsAverage)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div
+                  class="flex my-3 cursor-pointer"
+                  [routerLink]="['/details', product._id]"
+                >
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md w-9 h-9 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            Women's Fashion <span class="main-color">(10)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (product of products.slice(1,11); track product._id) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-9 left-52 z-20 text-3xl"
+                  (click)="toggleHeart(product)"
+                >
+                  <i
+                    class="fa-heart main-color"
+                    [ngClass]="{
+                      'fa-regular': !isFavorite(product),
+                      'fa-solid': isFavorite(product)
+                    }"
+                  >
+                  </i>
+                </span>
+                <img
+                  [src]="product.imageCover"
+                  class="w-full h-[250px] object-contain"
+                  [alt]="product.title"
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ product.category.name }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ product.title.split(" ", 2).join(" ") }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black">Available Quantity:</span>
+                  {{ product.quantity }}</span
+                >
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ product.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1">{{ product.ratingsAverage }}</span>
+
+                      @for (star of getFullStars(product.ratingsAverage); track
+                      star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(product.ratingsAverage)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div
+                  class="flex my-3 cursor-pointer"
+                  [routerLink]="['/details', product._id]"
+                >
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md w-9 h-9 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            Men's Fashion <span class="main-color">(22)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (product of products.slice(11,33); track product._id) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-9 left-52 z-20 text-3xl"
+                  (click)="toggleHeart(product)"
+                >
+                  <i
+                    class="fa-heart main-color"
+                    [ngClass]="{
+                      'fa-regular': !isFavorite(product),
+                      'fa-solid': isFavorite(product)
+                    }"
+                  >
+                  </i>
+                </span>
+                <img
+                  [src]="product.imageCover"
+                  class="w-full h-[250px] object-contain"
+                  [alt]="product.title"
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ product.category.name }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ product.title.split(" ", 2).join(" ") }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black">Available Quantity:</span>
+                  {{ product.quantity }}</span
+                >
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ product.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1">{{ product.ratingsAverage }}</span>
+
+                      @for (star of getFullStars(product.ratingsAverage); track
+                      star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(product.ratingsAverage)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div
+                  class="flex my-3 cursor-pointer"
+                  [routerLink]="['/details', product._id]"
+                >
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md w-9 h-9 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+
+        <p-tabpanel value="3">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            SuperMarket <span class="main-color">(10)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (item of marketImages; track $index) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-2 left-60 md:left-72 z-20 text-3xl"
+                  (click)="toggleHeart2($event)"
+                >
+                  <i #heartIcon1 class="fa-heart fa-regular main-color"></i>
+                </span>
+
+                <img
+                  [src]="item.image"
+                  class="w-full h-[250px] object-contain"
+                  alt=""
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ item.category }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ item.title }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black"
+                    >Available Quantity: {{ item.quantity }}</span
+                  >
+                </span>
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ item.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1"></span>
+                      {{ 4.8 }}
+                      @for (star of getFullStars(4.8); track star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(4.8)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div class="flex my-3 cursor-pointer">
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md ms-16 w-9 h-9 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+
+        <p-tabpanel value="4">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            Home <span class="main-color">(10)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (item of homeImages; track $index) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-2 left-60 md:left-72 z-20 text-3xl"
+                  (click)="toggleHeart2($event)"
+                >
+                  <i #heartIcon1 class="fa-heart fa-regular main-color"></i>
+                </span>
+
+                <img
+                  [src]="item.image"
+                  class="w-full h-[250px] object-contain"
+                  alt=""
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ item.category }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ item.title }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black"
+                    >Available Quantity: {{ item.quantity }}</span
+                  >
+                </span>
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ item.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1"></span>
+                      {{ 4.8 }}
+                      @for (star of getFullStars(4.8); track star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(4.8)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div class="flex my-3 cursor-pointer">
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md w-9 h-9 ms-16 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+
+        <p-tabpanel value="5">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            Books <span class="main-color">(8)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (item of bookImages; track $index) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-2 left-60 md:left-72 z-20 text-3xl"
+                  (click)="toggleHeart2($event)"
+                >
+                  <i #heartIcon1 class="fa-heart fa-regular main-color"></i>
+                </span>
+
+                <img
+                  [src]="item.image"
+                  class="w-full h-[250px] object-contain"
+                  alt=""
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ item.category }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ item.title }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black"
+                    >Available Quantity: {{ item.quantity }}</span
+                  >
+                </span>
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ item.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1"></span>
+                      {{ 4.8 }}
+                      @for (star of getFullStars(4.8); track star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(4.8)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div class="flex my-3 cursor-pointer">
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md w-9 h-9 ms-16 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+        <p-tabpanel value="6">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            Mobile <span class="main-color">(6)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (item of mobileImages; track $index) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-2 left-60 md:left-72 z-20 text-3xl"
+                  (click)="toggleHeart2($event)"
+                >
+                  <i #heartIcon1 class="fa-heart fa-regular main-color"></i>
+                </span>
+
+                <img
+                  [src]="item.image"
+                  class="w-full h-[250px] object-contain"
+                  alt=""
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ item.category }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ item.title }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black"
+                    >Available Quantity: {{ item.quantity }}</span
+                  >
+                </span>
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ item.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1"></span>
+                      {{ 4.8 }}
+                      @for (star of getFullStars(4.8); track star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(4.8)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div class="flex my-3 cursor-pointer">
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md w-9 h-9 ms-16 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+
+        <p-tabpanel value="7">
+          <h2 class="font-bold text-3xl text-black capitalize my-6">
+            Baby & Toy <span class="main-color">(7)</span>
+          </h2>
+
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3 animate__animated animate__fadeInUpBig"
+          >
+            @for (item of babytImages; track $index) {
+            <div class="card pb-3 overflow-hidden relative">
+              <div class="card-image">
+                <span
+                  class="heart relative cursor-pointer top-2 left-60 md:left-72 z-20 text-3xl"
+                  (click)="toggleHeart2($event)"
+                >
+                  <i #heartIcon1 class="fa-heart fa-regular main-color"></i>
+                </span>
+
+                <img
+                  [src]="item.image"
+                  class="w-full h-[250px] object-contain"
+                  alt=""
+                />
+              </div>
+              <div class="card-body px-2 py-4">
+                <h3 class="main-color font-mono text-lg">
+                  {{ item.category }}
+                </h3>
+                <h4 class="font-bold">
+                  {{ item.title }}
+                </h4>
+
+                <span class="block mt-1 main-color font-mono text-lg"
+                  ><span class="font-bold text-black"
+                    >Available Quantity: {{ item.quantity }}</span
+                  >
+                </span>
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span
+                      ><span
+                        class="main-color font-mono font-semibold text-lg"
+                        >{{ item.price }}</span
+                      >
+                      EGP</span
+                    >
+
+                    <div
+                      class="item-center font-bold text-slate-800 mt-1 flex items-center"
+                    >
+                      <span class="mr-1"></span>
+                      {{ 4.8 }}
+                      @for (star of getFullStars(4.8); track star) {
+                      <i class="fas fa-star text-yellow-400"></i>
+                      } @if (getHasHalfStar(4.8)) {
+                      <i class="fas fa-star-half-alt text-yellow-400"></i>
+                      }
+                    </div>
+                  </div>
+
+                  <span class="font-medium text-white px-2 py-1 rounded bg-main"
+                    >-50%</span
+                  >
+                </div>
+
+                <div class="flex my-3 cursor-pointer">
+                  <h3 class="font-bold text-black font-mono text-lg">
+                    See more Details
+                  </h3>
+                  <span class="main-color font-bold font-mono text-2xl ms-1"
+                    ><i class="fa-solid fa-arrow-right-long"></i
+                  ></span>
+                </div>
+                <button
+                  class="plus mt-2 bg-main text-white rounded-md w-9 h-9 ms-16 flex items-center justify-center text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </div>
+</section>

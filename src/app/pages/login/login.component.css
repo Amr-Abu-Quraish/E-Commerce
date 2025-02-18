@@ -1,0 +1,25 @@
+.main-color {
+  color: #8B5E35;
+}
+
+a {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+a:hover {
+  color: #3e2f21;
+}
+
+.bg-main {
+  background-color: #8B5E35;
+}
+
+.form-bg {
+  background-color: #F6F6F6;
+}
+
+.btn-main {
+  @apply disabled:bg-gray-800 capitalize text-white font-bold text-xl rounded-3xl;
+}
+/*# sourceMappingURL=login.component.css.map */

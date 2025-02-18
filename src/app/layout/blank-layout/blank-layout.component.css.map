@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAA;EACH,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,eAAe,EAAE,aAAa;EAC9B,UAAU,EAAE,KAAK;CAClB",
+    "sources": [
+        "blank-layout.component.scss"
+    ],
+    "names": [],
+    "file": "blank-layout.component.css"
+}
