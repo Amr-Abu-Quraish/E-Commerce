@@ -1,0 +1,285 @@
+<!-- <section class="p-[40px] md:container mt-10 md:p-[70px] bg-gray-800">
+  <nav class="text-gray-500 ms-6 text-xl mb-5 mt-2">
+    <span class="main-color text-lg font-bold"
+      >Home <span class="text-gray-500">></span></span
+    >
+
+    <span class="text-blue-950 font-semibold px-1"
+      >Orders <span class="text-gray-500">></span>
+    </span>
+  </nav>
+
+  <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+    @for (order of userOrderDetaisl; track order._id) {
+    <div class="bg-white px-5 rounded-3xl">
+      <div class="flex justify-between border-b-2 p-4">
+        <p class="text-lg font-bold">
+          payment Method
+          <span class="text-blue-950 font-medium"
+            >: {{ order.paymentMethodType }}</span
+          >
+        </p>
+        <p>
+          @if (order.isDelivered) {
+          <span class="text-green-500 font-semibold bg-green-100 p-2 rounded-md"
+            >Delivered</span
+          >
+          } @else {
+          <span class="text-blue-600 font-semibold bg-blue-100 p-2 rounded-md"
+            >On Delivery</span
+          >
+          }
+        </p>
+
+        <p>
+          @if (order.isPaid) {
+          <span class="text-green-500 font-semibold bg-green-100 p-2 rounded-md"
+            >Paid</span
+          >
+          } @else {
+          <span class="text-red-500 font-semibold bg-red-100 p-2 rounded-md"
+            >Unpaid</span
+          >
+          }
+        </p>
+      </div>
+
+      @for (orderItem of order.cartItems; track $index) {
+      <div class="flex items-center border-b-2">
+        <div class="mt-4">
+          <img
+            [src]="orderItem.product.imageCover"
+            class="w-24 h-24 md:w-32 md:h-32 object-contain"
+            [alt]="orderItem.product.title"
+          />
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between w-full">
+          <div>
+            <h4 class="text-gray-600 font-normal">
+              {{ orderItem.product.title.split(" ", 2).join(" ") }}
+            </h4>
+            <h2
+              class="text-blue-950 font-semibold text-lg md:text-xl lg:text-2xl"
+            >
+              {{ orderItem.product.brand.name }}
+            </h2>
+          </div>
+
+          <div class="flex flex-col items-end">
+            <h4 class="font-bold text-lg md:text-xl text-blue-950">
+              {{ orderItem.price }} EGP
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      }
+      <div class="flex justify-between p-4 rounded-xl mt-4">
+        <div class="bg-second p-5 w-80">
+          <h1 class="capitalize py-4 text-xl font-semibold">
+            mr:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.user.name
+            }}</span>
+          </h1>
+          <h2 class="capitalize py-4 text-xl font-semibold">
+            Phone:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingAddress.phone
+            }}</span>
+          </h2>
+          <h2 class="capitalize py-4 text-xl font-semibold">
+            city:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingAddress.city
+            }}</span>
+          </h2>
+          <h2 class="capitalize py-4 text-xl font-semibold">
+            Address:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingAddress.details
+            }}</span>
+          </h2>
+        </div>
+
+        <div class="bg-second p-5 w-56">
+          <div class="flex justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">Total:</h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.totalOrderPrice
+            }}</span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">
+              Shipping price :
+            </h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingPrice
+            }}</span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">Tax:</h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.taxPrice
+            }}</span>
+          </div>
+
+          <div class="flex border-t-2 justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">Total:</h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.totalOrderPrice
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section> -->
+
+<section class="p-5 md:container md:p-[70px] bg-second">
+  <nav class="text-gray-500 text-xl mb-5 mt-10">
+    <span class="main-color text-lg font-bold"
+      >Home <span class="text-gray-500">></span></span
+    >
+    <span class="text-blue-950 font-semibold px-1"
+      >Orders <span class="text-gray-500">></span>
+    </span>
+  </nav>
+
+  <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+    @for (order of userOrderDetaisl; track order._id) {
+    <div class="bg-white px-5 rounded-3xl shadow-2xl">
+      <div
+        class="flex flex-col gap-6 md:flex-row justify-between border-b-2 p-4"
+      >
+        <p class="text-lg font-bold">
+          payment Method
+          <span class="text-blue-950 font-medium"
+            >: {{ order.paymentMethodType }}</span
+          >
+        </p>
+        <p>
+          @if (order.isDelivered) {
+          <span class="text-green-500 font-semibold bg-green-100 p-2 rounded-md"
+            >Delivered</span
+          >
+          } @else {
+          <span class="text-blue-600 font-semibold bg-blue-100 p-2 rounded-md"
+            >On Delivery</span
+          >
+          }
+        </p>
+        <p>
+          @if (order.isPaid) {
+          <span class="text-green-500 font-semibold bg-green-100 p-2 rounded-md"
+            >Paid</span
+          >
+          } @else {
+          <span class="text-red-500 font-semibold bg-red-100 p-2 rounded-md"
+            >Unpaid</span
+          >
+          }
+        </p>
+      </div>
+
+      @for (orderItem of order.cartItems; track $index) {
+      <div class="flex items-center border-b-2">
+        <div class="mt-4">
+          <img
+            [src]="orderItem.product.imageCover"
+            class="w-24 h-24 md:w-32 md:h-32 object-contain"
+            [alt]="orderItem.product.title"
+          />
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between w-full">
+          <div>
+            <h4 class="text-gray-600 font-normal">
+              {{ orderItem.product.title.split(" ", 2).join(" ") }}
+            </h4>
+            <h2
+              class="text-blue-950 font-semibold text-lg md:text-xl lg:text-2xl"
+            >
+              {{ orderItem.product.brand.name }}
+            </h2>
+          </div>
+
+          <div class="flex flex-col items-end">
+            <h4 class="font-bold text-lg md:text-xl text-blue-950">
+              {{ orderItem.price }} EGP
+            </h4>
+          </div>
+        </div>
+      </div>
+      }
+
+      <div
+        class="flex flex-col md:flex-row justify-between p-4 rounded-xl mt-4"
+      >
+        <div class="bg-second p-5 w-full md:w-60">
+          <h1 class="capitalize py-4 text-xl font-semibold">
+            Mr:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.user.name
+            }}</span>
+          </h1>
+          <h2 class="capitalize py-4 text-xl font-semibold">
+            Phone:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingAddress.phone
+            }}</span>
+          </h2>
+          <h2 class="capitalize py-4 text-xl font-semibold">
+            City:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingAddress.city
+            }}</span>
+          </h2>
+          <h2 class="capitalize py-4 text-xl font-semibold">
+            Address:
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingAddress.details
+            }}</span>
+          </h2>
+        </div>
+
+        <div class="bg-second p-5 w-full md:w-1/2 mt-4 md:mt-0">
+          <div class="flex justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">Price:</h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.totalOrderPrice
+            }}</span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">
+              Shipping price:
+            </h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.shippingPrice
+            }}</span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">Tax:</h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.taxPrice
+            }}</span>
+          </div>
+
+          <div class="flex border-t-2 justify-between items-center">
+            <h2 class="capitalize py-4 text-xl font-semibold">Total:</h2>
+            <span class="capitalize text-lg font-medium text-blue-950">{{
+              order.totalOrderPrice
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

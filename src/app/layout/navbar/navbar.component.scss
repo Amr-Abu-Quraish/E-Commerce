@@ -1,0 +1,36 @@
+.main-color{
+  color:  #BB7a3E;
+}
+.bg-main{
+  background-color:  #BB7a3E;
+}
+a {
+  transition: all .5s;
+}
+
+a:hover {
+  color: #BB7a3E ;
+}
+
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 555;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.bg-transparent {
+  background-color: transparent;
+}
+
+.nav-bg {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.default-bg {
+  background-color: #F6F6F6 ;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}

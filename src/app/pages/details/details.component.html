@@ -1,0 +1,277 @@
+@if( detailsProduct){
+<section class="container bg-second p-[70px] mt-6">
+  @if (detailsProduct) {
+  <nav class="text-gray-500 ms-6 text-xl mb-10 mt-8">
+    <span class="main-color text-lg font-bold">Category ></span>
+    <span class="text-blue-950 font-semibold px-1"
+      >{{ detailsProduct.category.name }} ></span
+    >
+    <span class="text-blue-950 font-semibold px-1"
+      >{{ detailsProduct.title.split(" ", 2).join(" ") }}></span
+    >
+  </nav>
+  }
+
+  <div class="grid gap-11 mb-10 grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)]">
+    <div class="flex flex-col-reverse items-center md:flex-row gap-3">
+      <div class="grid items-center grid-cols-2 md:grid-cols-2 gap-4 ms-6">
+        @for (imgSrc of detailsProduct.images; track detailsProduct._id) {
+        <img
+          [src]="imgSrc"
+          class="w-40 h-20 cursor-pointer border border-amber-800 rounded-md"
+          [alt]="detailsProduct.title"
+          (click)="changeMainImage(imgSrc)"
+        />
+        }
+      </div>
+
+      <div
+        class="bg-white text-center border rounded-md shadow-md shadow-black"
+      >
+        <span
+          class="heart relative cursor-pointer top-2 left-24 md:left-36 z-20 text-3xl"
+          (click)="toggleHeart($event)"
+        >
+          <i #heartIcon class="fa-heart fa-regular main-color"></i>
+        </span>
+        <img
+          [src]="selectedImage || detailsProduct.imageCover"
+          class="w-full"
+          [alt]="detailsProduct.title"
+        />
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-black font-mono font-semibold text-xl md:text-3xl my-2">
+        {{ detailsProduct.title }}
+      </h2>
+      <p class="text-emerald-950 text-lg md:text-xl font-medium mb-3">
+        {{ detailsProduct.description }}
+      </p>
+
+      <span
+        ><span class="text-teal-700 font-mono my-1 font-semibold text-lg">{{
+          detailsProduct.price
+        }}</span>
+        EGP</span
+      >
+
+      <div class="item-center mt-1 flex items-center">
+        <span class="mr-1">{{ detailsProduct.ratingsAverage }}</span>
+
+        @for (star of getFullStars(detailsProduct.ratingsAverage); track star) {
+        <i class="fas fa-star text-yellow-400"></i>
+        } @if (getHasHalfStar(detailsProduct.ratingsAverage)) {
+        <i class="fas fa-star-half-alt text-yellow-400"></i>
+        }
+      </div>
+
+      @if (detailsProduct.category.name ==="Men's Fashion" ||
+      detailsProduct.category.name ==="Women's Fashion" ){
+
+      <div>
+        <div class="flex items-center mt-6">
+          <h3 class="text-teal-700 font-mono font-extrabold text-xl">Color:</h3>
+          <h4 class="font-mono font-semibold text-lg">{{ selectedColor }}</h4>
+        </div>
+        <div class="flex gap-3 items-center mt-3">
+          <span
+            class="bg-red-600 w-9 h-9 rounded-full border-black border cursor-pointer"
+            (click)="changeColor('Red')"
+          ></span>
+          <span
+            class="bg-blue-600 w-9 h-9 rounded-full border-black border cursor-pointer"
+            (click)="changeColor('Blue')"
+          ></span>
+          <span
+            class="bg-green-600 w-9 h-9 rounded-full border-black border cursor-pointer"
+            (click)="changeColor('Green')"
+          ></span>
+          <span
+            class="bg-yellow-400 w-9 h-9 rounded-full border-black border cursor-pointer"
+            (click)="changeColor('Yellow')"
+          ></span>
+          <span
+            class="bg-black w-9 h-9 rounded-full border-white border cursor-pointer"
+            (click)="changeColor('Black')"
+          ></span>
+          <span
+            class="bg-gray-600 w-9 h-9 rounded-full border-black border cursor-pointer"
+            (click)="changeColor('Gray')"
+          ></span>
+        </div>
+      </div>
+
+      } @if (detailsProduct.category.name ==="Men's Fashion" ||
+      detailsProduct.category.name ==="Women's Fashion" ){
+      <div>
+        <div class="flex items-center mt-6">
+          <h3 class="text-teal-700 font-mono font-extrabold text-xl">Size:</h3>
+          <h4 class="font-mono font-semibold text-lg">{{ selectedSize }}</h4>
+        </div>
+        <div class="flex flex-wrap md:flex-nowrap gap-3 items-center mt-3">
+          <span
+            class="bg-white rounded shadow text-black px-4 py-1 w-fit h-fit border-black border cursor-pointer"
+            (click)="changeSize('Extra Small')"
+            >XS</span
+          >
+
+          <span
+            class="bg-white rounded shadow text-black px-4 py-1 w-fit h-fit border-black border cursor-pointer"
+            (click)="changeSize('Small')"
+            >S</span
+          >
+          <span
+            class="bg-white rounded shadow text-black px-4 py-1 w-fit h-fit border-black border cursor-pointer"
+            (click)="changeSize('Medium')"
+            >M</span
+          >
+          <span
+            class="bg-white rounded shadow text-black px-4 py-1 w-fit h-fit border-black border cursor-pointer"
+            (click)="changeSize('Large')"
+            >L</span
+          >
+          <span
+            class="bg-white rounded shadow text-black px-4 py-1 w-fit h-fit border-black border cursor-pointer"
+            (click)="changeSize('Extra Large')"
+            >XL</span
+          >
+          <span
+            class="bg-white rounded shadow text-black px-4 py-1 border-black w-fit h-fit border cursor-pointer"
+            (click)="changeSize('Double Extra Large')"
+            >XXL</span
+          >
+          <span
+            class="bg-white rounded shadow text-black px-4 py-1 border-black w-fit h-fit border cursor-pointer"
+            (click)="changeSize('Trible Extra Large')"
+            >XXL</span
+          >
+        </div>
+      </div>
+      }
+
+      <button
+        (click)="addToCart(detailsProduct._id)"
+        [disabled]="isAddLoading[detailsProduct._id]"
+        class="font-bold font-mono bg-main text-white text-3xl mt-10 py-2 px-4 border block w-[40%] md:w-[20%] rounded-md"
+      >
+        @if (!isAddLoading[detailsProduct._id]) {
+
+        <i class="fa-solid fa-cart-plus"></i>
+        } @else {
+        <i class="fas fa-spinner fa-spin"></i>
+        }
+      </button>
+      <p-toast position="top-right"></p-toast>
+    </div>
+  </div>
+
+  <div class="md:flex">
+    <div class="bg-white p-6 rounded-lg mb-4 shadow-lg md:w-96 md:h-96">
+      <h3 class="text-gray-700 font-semibold text-lg">Employee Reviews</h3>
+
+      <div class="md:mt-2 flex items-center">
+        <span class="text-4xl font-bold text-blue-900">{{
+          detailsProduct.ratingsAverage
+        }}</span>
+        <div class="ml-2 flex">
+          @for (star of getFullStars(detailsProduct.ratingsAverage); track star)
+          {
+          <i class="fas fa-star text-yellow-400"></i>
+          } @if (getHasHalfStar(detailsProduct.ratingsAverage)) {
+          <i class="fas fa-star-half-alt text-yellow-400"></i>
+          }
+        </div>
+      </div>
+
+      <p class="text-gray-500 text-sm mt-1">({{ totalReviews }} Reviews)</p>
+
+      <div class="mt-4 space-y-2">
+        @for (review of reviews; track review.stars) {
+        <div class="flex items-center">
+          <span class="text-gray-600 text-sm w-12"
+            >{{ review.stars }} stars</span
+          >
+          <div class="w-full bg-gray-200 h-2 rounded">
+            <div
+              class="h-2 bg-yellow-400 rounded"
+              [style.width.%]="getPercentage(review.count)"
+            ></div>
+          </div>
+          <span class="text-gray-600 text-sm w-6 text-right">{{
+            review.count
+          }}</span>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl mx-auto">
+      <div class="border-b pb-4 mb-4">
+        <p class="text-gray-500 text-lg">jan 20,2024</p>
+
+        <div class="flex items-center mt-2">
+          @for (star of getFullStars(detailsProduct.ratingsAverage); track star)
+          {
+          <i class="fas fa-star text-yellow-400"></i>
+          } @if (getHasHalfStar(detailsProduct.ratingsAverage)) {
+          <i class="fas fa-star-half-alt text-yellow-400"></i>
+          }
+        </div>
+
+        <div class="flex items-center gap-3 mt-2">
+          <div
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 font-bold"
+          >
+            AK
+          </div>
+          <div>
+            <h3 class="text-blue-900 font-semibold">Alex k.</h3>
+          </div>
+        </div>
+
+        <p class="text-gray-700 mt-2">Senior Analyst</p>
+        <p class="text-black mt-2">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
+          recusandae doloremque iste commodi accusantium tenetur rem atque nam
+          at. Beatae dicta architecto, tenetur modi delectus cum ipsum nam
+          facilis consequatur.
+        </p>
+      </div>
+
+      <div class="border-b pb-4 mb-4 last:border-0 last:pb-0">
+        <p class="text-gray-500 text-lg">nov 12,2023</p>
+
+        <div class="flex items-center mt-2">
+          @for (star of getFullStars(detailsProduct.ratingsAverage); track star)
+          {
+          <i class="fas fa-star text-yellow-400"></i>
+          } @if (getHasHalfStar(detailsProduct.ratingsAverage)) {
+          <i class="fas fa-star-half-alt text-yellow-400"></i>
+          }
+        </div>
+
+        <div class="flex items-center gap-3 mt-2">
+          <div
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 font-bold"
+          >
+            ER
+          </div>
+          <div>
+            <h3 class="text-blue-900 font-semibold">Emily R.</h3>
+          </div>
+        </div>
+
+        <p class="text-gray-700 mt-2">Front-End Engineer</p>
+        <p class="text-black mt-2">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
+          recusandae doloremque iste commodi accusantium tenetur rem atque nam
+          at. Beatae dicta architecto, tenetur modi delectus cum ipsum nam
+          facilis consequatur.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+}

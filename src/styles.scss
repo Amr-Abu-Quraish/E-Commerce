@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'animate.css';
+
+
+
+
+
+
+
+.p-step-active .p-step-title, .p-step-active .p-step-number{
+
+  color: #BB7a3E !important;
+  font-weight: bold !important;
+
+
+}
+.p-tab{
+  font-size: 20px !important;
+  color: black !important;
+
+
+
+ }
+ .p-tab-active {
+
+  font-weight: bold !important;
+  color:#BB7a3E !important ;
+  border-radius: 10px !important;
+
+
+ }
+ .p-tabpanels{
+  background-color: transparent !important;
+ }
+
+ .p-tablist-tab-list {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+
+
+ }
+
+
+
+ :root {
+  --p-primary-color:none  !important;
+}
+.p-tablist-tab-list {
+display: flex !important;
+justify-content: center !important;
+align-items: center !important;
+}
+
+
+.owl-theme .owl-nav [class*=owl-prev] {
+  color:grey !important;
+  font-size: 50px !important;
+  position: absolute;
+  bottom: 120px;
+  left: -60px;
+  padding: 4px 7px;
+  background: transparent !important;
+  display: inline-block;
+  cursor: pointer;
+
+
+}
+.owl-theme .owl-nav [class*=owl-next] {
+  color:grey !important;
+  font-size: 50px !important;
+  position: absolute;
+  bottom: 120px;
+  right: -60px;
+
+  padding: 4px 7px;
+  background: transparent !important;
+  display: inline-block;
+  cursor: pointer;
+
+
+}
+
+
+
+.ngx-spinner-overlay {
+  z-index: 9999 !important; /* ضمان الظهور فوق المحتوى */
+  pointer-events: none; /* السماح بالنقرات على العناصر الخلفية */
+}
+
+
+
+
+
+

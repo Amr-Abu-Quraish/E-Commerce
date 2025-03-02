@@ -1,0 +1,396 @@
+<section class="p-[40px] md:container mt-10 md:p-[70px] bg-second">
+  <nav class="text-gray-500 ms-6 text-xl mb-5 mt-2">
+    <span class="main-color text-lg font-bold"
+      >Home <span class="text-gray-500">></span></span
+    >
+    <span class="main-color font-semibold px-1"
+      >Ctegory <span class="text-gray-500">></span></span
+    >
+    <span class="main-color font-semibold px-1"
+      >Cart <span class="text-gray-500">></span>
+    </span>
+    <span class="text-blue-950 font-semibold px-1"
+      >Checkout <span class="text-gray-500">></span>
+    </span>
+  </nav>
+
+  <div class="items md:flex gap-3">
+    <div class="w-full md:w-[70%]">
+      <div class="md:flex gap-10">
+        <div class="bg-white w-full md:w-[50%] rounded-md shadow-lg">
+          <form
+            [formGroup]="checkoutForm"
+            (ngSubmit)="submitForm()"
+            class="p-4 md:p-5 flex flex-col items-center"
+          >
+            <div class="grid gap-4 mb-4 grid-cols-2">
+              <div class="col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">
+                  Country
+                </label>
+
+                <ng-select
+                  [items]="countries()"
+                  bindLabel="name"
+                  bindValue="code"
+                  [clearable]="true"
+                  [searchable]="true"
+                  placeholder="Select a country"
+                  class="w-full"
+                >
+                  <ng-template ng-label-tmp let-item="item">
+                    <div class="flex items-center">
+                      <img
+                        [src]="item.flag"
+                        class="w-6 h-4 inline-block mr-2"
+                        alt="{{ item.name }}"
+                      />
+                      {{ item.name }}
+                    </div>
+                  </ng-template>
+
+                  <ng-template ng-option-tmp let-item="item">
+                    <div class="flex items-center">
+                      <img
+                        [src]="item.flag"
+                        class="w-6 h-4 inline-block mr-2"
+                        alt="{{ item.name }}"
+                      />
+                      {{ item.name }}
+                    </div>
+                  </ng-template>
+                </ng-select>
+              </div>
+
+              <div class="col-span-2 sm:col-span-1">
+                <label
+                  for="city"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                  >city</label
+                >
+                <input
+                  formControlName="city"
+                  type="text"
+                  name="city"
+                  id="city"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                />
+
+                @if (checkoutForm.get('city')?.errors &&
+                checkoutForm.get('city')?.touched) {
+                <div
+                  class="flex p-4 mb-4 mt-1 text-sm text-red-950 rounded-lg bg-red-300"
+                  role="alert"
+                >
+                  <svg
+                    class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                    />
+                  </svg>
+                  <span class="sr-only">Danger</span>
+                  <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                      @if(checkoutForm.get('city')?.getError('required')){
+                      <li>city is required</li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+                }
+              </div>
+
+              <div class="col-span-2 sm:col-span-1">
+                <label
+                  for="location"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                  >Home / Office</label
+                >
+                <select
+                  id="location"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                >
+                  <option selected="">Choose delivery location</option>
+                  <option value="home">Home</option>
+                  <option value="office">Office</option>
+                </select>
+              </div>
+
+              <div class="col-span-2 sm:col-span-1">
+                <label
+                  for="phone"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                  >phone</label
+                >
+                <input
+                  formControlName="phone"
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  placeholder="01002512212"
+                />
+
+                @if (checkoutForm.get('phone')?.errors &&
+                checkoutForm.get('phone')?.touched) {
+                <div
+                  class="flex p-4 mb-4 mt-1 text-sm text-red-950 rounded-lg bg-red-300"
+                  role="alert"
+                >
+                  <svg
+                    class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                    />
+                  </svg>
+                  <span class="sr-only">Danger</span>
+                  <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                      @if(checkoutForm.get('phone')?.getError('required')){
+                      <li>phone is required</li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+                }
+              </div>
+
+              <div class="col-span-2">
+                <label
+                  for="details"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Address</label
+                >
+                <textarea
+                  formControlName="details"
+                  id="details"
+                  rows="4"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
+                  placeholder="Write a city"
+                ></textarea>
+                @if (checkoutForm.get('details')?.errors &&
+                checkoutForm.get('details')?.touched) {
+                <div
+                  class="flex p-4 mb-4 mt-1 text-sm text-red-950 rounded-lg bg-red-300"
+                  role="alert"
+                >
+                  <svg
+                    class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                    />
+                  </svg>
+                  <span class="sr-only">Danger</span>
+                  <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                      @if(checkoutForm.get('details')?.getError('required')){
+                      <li>details is required</li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+            <button
+              class="mt-3 md:ms-10 blocks px-12 py-3 rounded-2xl bg-amber-800 text-white text-nowrap text-lg font-semibold hover:bg-amber-900"
+            >
+              Place Order
+            </button>
+            <p-toast position="top-left"></p-toast>
+          </form>
+        </div>
+
+        <div>
+          <div class="shipmethod mt-10">
+            <h2 class="text-blue-950 font-semibold text-2xl capitalize">
+              Shipment Method
+            </h2>
+
+            <div class="border border-gray-400 rounded-lg mt-5">
+              <label
+                class="flex items-center justify-between px-6 py-4 border-b-2 border-gray-400 cursor-pointer"
+              >
+                <div class="flex items-center">
+                  <input
+                    type="radio"
+                    name="shipping"
+                    class="hidden peer"
+                    [value]="0"
+                    (change)="updateShipping(0, 'Free')"
+                    [checked]="selectedShipping === 0"
+                  />
+                  <div
+                    class="w-5 h-5 border-2 border-amber-800 rounded-full flex items-center justify-center peer-checked:bg-amber-800"
+                  >
+                    <div class="w-2.5 h-2.5 rounded-full"></div>
+                  </div>
+                  <span
+                    class="ml-3 text-blue-950 font-normal capitalize text-lg"
+                    ><span class="font-bold text-black text-lg">Free</span>
+                    Regular Shipment</span
+                  >
+                </div>
+                <div>26 Feb, 2025</div>
+              </label>
+
+              <label
+                class="flex items-center justify-between px-6 py-4 cursor-pointer"
+              >
+                <div class="flex items-center">
+                  <input
+                    type="radio"
+                    name="shipping"
+                    class="hidden peer"
+                    [value]="100"
+                    (change)="updateShipping(100, '100EGP')"
+                    [checked]="selectedShipping === 100"
+                  />
+                  <div
+                    class="w-5 h-5 border-2 border-amber-800 rounded-full flex items-center justify-center peer-checked:bg-amber-800"
+                  >
+                    <div class="w-2.5 h-2.5 rounded-full"></div>
+                  </div>
+                  <span
+                    class="ml-3 text-blue-950 font-normal capitalize text-lg"
+                    ><span class="font-bold text-black text-lg">100EGP</span>
+                    Priority Shipping</span
+                  >
+                </div>
+                <div>24 Feb, 2025</div>
+              </label>
+            </div>
+          </div>
+
+          <div class="paymethod mt-10">
+            <h2 class="text-blue-950 font-semibold capitalize text-2xl">
+              Payment Method
+            </h2>
+
+            <div class="border border-gray-400 rounded-lg mt-5">
+              <label
+                class="flex items-center justify-between px-6 py-4 border-b-2 border-gray-400 cursor-pointer"
+              >
+                <div class="flex items-center">
+                  <input
+                    type="radio"
+                    name="payment"
+                    class="hidden peer"
+                    value="online"
+                    (change)="selectedPaymentMethod = 'online'"
+                  />
+                  <div
+                    class="w-5 h-5 border-2 border-amber-800 rounded-full flex items-center justify-center peer-checked:bg-amber-800"
+                  >
+                    <div class="w-2.5 h-2.5 rounded-full"></div>
+                  </div>
+                  <span
+                    class="ml-3 text-blue-950 font-normal capitalize text-lg"
+                  >
+                    online payment</span
+                  >
+                </div>
+              </label>
+
+              <label
+                class="flex items-center justify-between px-6 py-4 cursor-pointer"
+              >
+                <div class="flex items-center">
+                  <input
+                    type="radio"
+                    name="payment"
+                    class="hidden peer"
+                    value="cash"
+                    (change)="selectedPaymentMethod = 'cash'"
+                  />
+                  <div
+                    class="w-5 h-5 border-2 border-amber-800 rounded-full flex items-center justify-center peer-checked:bg-amber-800"
+                  >
+                    <div class="w-2.5 h-2.5 rounded-full"></div>
+                  </div>
+                  <span
+                    class="ml-3 text-blue-950 font-normal capitalize text-lg"
+                    >cash payment</span
+                  >
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="payment w-full md:w-[25%] bg-white shadow-md border p-4 border-gray-200 rounded-md"
+    >
+      <h3 class="capitalize text-blue-950 font-semibold text-2xl">
+        order summary
+      </h3>
+
+      <ul class="border-b-2">
+        <li class="flex justify-between items-center p-4">
+          <span class="text-blue-950 text-lg">price</span>
+          <span class="text-blue-950 text-lg"
+            >{{ CartDetails.totalCartPrice }} EGP</span
+          >
+        </li>
+        <li class="flex justify-between items-center p-4">
+          <span class="text-blue-950 text-lg">shipping</span>
+          <span class="main-color text-lg">{{ selectedShippingText }}</span>
+        </li>
+        <li class="flex justify-between items-center p-4">
+          <span class="text-blue-950 text-lg">Coupon Applied</span>
+          <span class="text-blue-950 text-lg">0.00EGP </span>
+        </li>
+      </ul>
+
+      <ul class="border-b-2">
+        <li class="flex justify-between items-center p-4">
+          <span class="text-blue-950 text-lg">Total</span>
+          <span class="text-blue-950 text-lg"
+            >{{ CartDetails.totalCartPrice + selectedShipping }} EGP</span
+          >
+        </li>
+        <li class="flex justify-between items-center p-4">
+          <span class="text-blue-950 text-lg">Estimated Delivery by </span>
+          <span class="text-blue-950 text-lg">1 Mar, 2025 </span>
+        </li>
+
+        <div class="relative">
+          <div
+            class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+          ></div>
+          <input
+            type="search"
+            id="default-search"
+            class="block w-full p-4 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+            placeholder="Coupon Code"
+            required
+          />
+          <button
+            type="submit"
+            class="text-white absolute end-2.5 bottom-2.5 bg-amber-800 font-medium rounded-lg text-lg px-4 py-2"
+          >
+            Apply
+          </button>
+        </div>
+      </ul>
+    </div>
+  </div>
+</section>

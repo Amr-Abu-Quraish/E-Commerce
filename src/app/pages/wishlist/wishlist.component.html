@@ -1,0 +1,100 @@
+<section class="p-[40px] md:container mt-10 md:p-[70px] bg-second">
+  <nav class="text-gray-500 ms-6 text-xl mb-5 mt-2">
+    <span class="main-color text-lg font-bold"
+      >Home <span class="text-gray-500">></span></span
+    >
+    <span class="main-color font-semibold px-1"
+      >Products <span class="text-gray-500">></span></span
+    >
+    <span class="text-blue-950 font-semibold px-1"
+      >Wishlist <span class="text-gray-500">></span>
+    </span>
+  </nav>
+
+  <div class="title mb-11 mt-4 flex justify-between items-center">
+    <div>
+      <div class="flex items-center gap-1 md:gap-5 mb-3">
+        <h1 class="text-blue-950 font-sans font-bold text-base md:text-5xl">
+          Whishlist
+        </h1>
+
+        <span
+          class="main-color font-semibold relative md:top-1 font-sans text-base md:text-2xl"
+          >{{ countWishList() }} items</span
+        >
+      </div>
+    </div>
+    <button
+      (click)="clearAllWishList()"
+      class="text-white bg-red-600 px-2 py-1 sm:block md:px-5 md:py-1 rounded-md text-nowrap font-sans font-bold text-lg md:text-2xl md:me-32"
+    >
+      <span
+        class="text-white font-semibold relative font-sans text-base md:text-2xl"
+        ><i class="fa fas fa-trash"></i
+      ></span>
+      Clear WishList
+    </button>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    @for (item of wishListDetails; track $index) {
+    <div
+      class="bg-white shadow-md rounded-md grid grid-cols-[auto_1fr] items-center gap-4 p-4 md:p-6"
+    >
+      <div class="flex items-center justify-center">
+        <img
+          [src]="item.imageCover"
+          class="w-24 h-24 md:w-32 md:h-32 object-contain"
+          [alt]="item.title"
+        />
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between w-full">
+        <div>
+          <h4 class="text-gray-600 font-normal">{{ item.category.name }}</h4>
+          <h2
+            class="text-blue-950 font-semibold text-lg md:text-xl lg:text-2xl"
+          >
+            {{ item.title.split(" ", 2).join(" ") }}
+          </h2>
+          <div class="font-bold text-slate-800 mt-1 flex items-center">
+            <span class="mr-1">{{ item.ratingsAverage }}</span>
+            @for (star of getFullStars(item.ratingsAverage); track star) {
+            <i class="fas fa-star text-yellow-400"></i>
+            } @if (getHasHalfStar(item.ratingsAverage)) {
+            <i class="fas fa-star-half-alt text-yellow-400"></i>
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end">
+          <h4 class="font-bold text-lg md:text-xl text-blue-950">
+            {{ item.price }} EGP
+          </h4>
+          <div class="flex items-center gap-4 mt-4">
+            <button
+              (click)="addToCart(item.id)"
+              [disabled]="isAddLoading[item.id]"
+              class="text-3xl main-color cursor-pointer"
+            >
+              @if (!isAddLoading[item.id]) {
+              <i class="fa-solid fa-cart-plus"></i>
+              } @else {
+              <i class="fas fa-spinner fa-spin"></i>
+              }
+            </button>
+            <p-toast position="top-right"></p-toast>
+
+            <button
+              (click)="removeItem(item.id)"
+              class="text-3xl main-color cursor-pointer"
+            >
+              <i class="fa fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

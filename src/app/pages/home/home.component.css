@@ -1,0 +1,53 @@
+.circle {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50%;
+}
+
+.main-color {
+  color: #BB7a3E;
+}
+
+a {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+a:hover {
+  color: #BB7a3E;
+}
+
+.bg-main {
+  background-color: #BB7a3E;
+}
+
+.bg-second {
+  background-color: #f6f6f6;
+}
+
+.flower {
+  background-image: url("/images/9f4996ffa889fb2c0ec8a0a75b7a8809.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.dicover {
+  background-image: url("/images/unsplash_nimElTcTNyY.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.layer {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.toast {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 2000;
+}
+/*# sourceMappingURL=home.component.css.map */

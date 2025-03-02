@@ -1,0 +1,145 @@
+<section
+  class="md:container py-10 px-5 md:p-[70px] mt-5 bg-second dark:bg-slate-50"
+>
+  <h1 class="text-center text-blue-950 text-xl font-bold mt-5 md:text-4xl">
+    All Product
+  </h1>
+
+  <nav
+    aria-label="Page navigation"
+    class="my-10 fexd top-4 left-4 flex-col text-center"
+  >
+    <ul class="inline-flex -space-x-px text-base h-10">
+      <li>
+        <button
+          (click)="prevPage()"
+          [disabled]="currentPage === 1"
+          class="px-4 h-10 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100"
+        >
+          Previous
+        </button>
+      </li>
+      @for (page of getPages(); track page) {
+      <li>
+        <button
+          (click)="goToPage(page)"
+          [class.bg-blue-500]="currentPage === page"
+          [class.text-white]="currentPage === page"
+          [class.font-bold]="currentPage === page"
+          class="px-4 h-10 border border-gray-300"
+        >
+          {{ page }}
+        </button>
+      </li>
+      }
+      <li>
+        <button
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages"
+          class="px-4 h-10 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100"
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3"
+  >
+    @for (product of paginatedProducts; track product._id) {
+    <div
+      class="bg-white shadow-lg rounded-3xl overflow-hidden w-80 p-5 relative"
+    >
+      <div class="relative">
+        <img
+          [src]="product.imageCover"
+          alt="Product Image"
+          class="w-[80%] h-[280px] relative left-7 object-cover rounded-xl"
+        />
+        <span
+          class="absolute top-60 left-0 bg-main text-white text-lg font-bold px-4 py-1 rounded"
+          >-50%</span
+        >
+        <span
+          (click)="toggleWishlist(product._id)"
+          class="heart absolute cursor-pointer top-0 left-60 z-20 text-3xl"
+        >
+          <i
+            class="fa-heart"
+            [ngClass]="
+              isInWishlist(product._id)
+                ? 'fa-solid main-color'
+                : 'fa-regular main-color'
+            "
+          ></i>
+        </span>
+        <p-toast position="top-right"></p-toast>
+      </div>
+
+      <div class="card-body px-2 py-4">
+        <h3 class="main-color font-mono text-lg">
+          {{ product.category.name }}
+        </h3>
+        <h4 class="font-bold dark:text-black">
+          {{ product.title.split(" ", 2).join(" ") }}
+        </h4>
+
+        <span class="block mt-1 main-color font-mono text-lg">
+          <span class="font-bold text-black dark:text-black">
+            Available Quantity:
+          </span>
+          {{ product.quantity }}
+        </span>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <span>
+              <span class="main-color font-mono font-semibold text-lg">
+                {{ product.price }}
+              </span>
+              <span class="dark:text-black"> EGP</span>
+            </span>
+
+            <div
+              class="item-center font-bold text-slate-800 mt-1 flex items-center dark:text-black"
+            >
+              <span class="mr-1">{{ product.ratingsAverage }}</span>
+
+              @for (star of getFullStars(product.ratingsAverage); track star) {
+              <i class="fas fa-star text-yellow-400"></i>
+              } @if (getHasHalfStar(product.ratingsAverage)) {
+              <i class="fas fa-star-half-alt text-yellow-400"></i>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex my-3 cursor-pointer"
+          [routerLink]="['/details', product._id]"
+        >
+          <h3 class="font-bold text-black font-mono text-lg dark:text-black">
+            See more Details
+          </h3>
+          <span class="main-color font-bold font-mono text-2xl ms-1">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+        </div>
+        <button
+          (click)="addToCart(product._id)"
+          [disabled]="isAddLoading[product._id]"
+          class="relative left-60 mt-2 main-color rounded-md w-9 h-9 text-3xl font-bold"
+        >
+          @if (!isAddLoading[product._id]) {
+          <i class="fa-solid fa-cart-plus"></i>
+          } @else {
+          <i class="fas fa-spinner fa-spin"></i>
+          }
+        </button>
+        <p-toast position="top-right"></p-toast>
+      </div>
+    </div>
+    }
+  </div>
+</section>
