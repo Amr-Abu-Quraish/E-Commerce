@@ -56,33 +56,35 @@ export class WishlistComponent implements OnInit {
 
 
 
-  addToCart(id:string):void{
-
+  addToCart(id: string): void {
     this.isAddLoading[id] = true;
 
     this.cartService.addProductToCart(id).subscribe({
-      next:(res)=>{
-        console.log(res)
+      next: (res) => {
+        console.log(res);
 
-        this.cartService.cartNumber.set(res.numOfCartItems)
+        this.cartService.cartNumber.set(res.numOfCartItems);
+        console.log(this.cartService.cartNumber());
 
-        console.log(this.cartService.cartNumber())
+        // حذف العنصر من ال wishlist بعد إضافته للسلة
+        this.wishListDetails = this.wishListDetails.filter(item => item._id !== id);
+        this.wishlistService.wishListNumber.set(this.wishListDetails.length);
+
+        // تحديث LocalStorage بعد الحذف
+        localStorage.setItem('wishlist', JSON.stringify(this.wishListDetails.map(p => p._id)));
+
         setTimeout(() => {
           this.isAddLoading[id] = false;
-
           this.showSuccess();
         }, 1500);
-
-
       },
-      error:(err)=>{
-        console.log(err)
-        this.isAddLoading[id]=false
-
+      error: (err) => {
+        console.log(err);
+        this.isAddLoading[id] = false;
       }
-    })
-
+    });
   }
+
 
   //  removeItem(id:string):void{
 

@@ -223,14 +223,7 @@ countries = signal([
 selectedCountry = signal<string | null>(null);
 
 
-openModal() {
-  this.isModalOpen.set(true);
-}
 
-
-closeModal() {
-  this.isModalOpen.set(false);
-}
 
 onCountrySelect(code: string | null) {
   this.selectedCountry.set(code);

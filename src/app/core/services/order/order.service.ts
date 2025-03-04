@@ -12,7 +12,7 @@ export class OrderService {
 
 
   checkOutSession(id:string, data:object):Observable<any>{
-    return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${id}?url=http://vercel.com `,
+    return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${id}?url=https://e-commerce-henna-six-87.vercel.app/ `,
 
 
       {
@@ -20,6 +20,8 @@ export class OrderService {
     }
     )
   }
+
+
   cashOrder(id:string, data:object):Observable<any>{
     return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/${id}`,
 
