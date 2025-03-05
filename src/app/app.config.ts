@@ -19,10 +19,13 @@ export const appConfig: ApplicationConfig = {
      provideAnimations(),
 
      providePrimeNG({
-         theme: {
-             preset: Aura
-         }
-     }),
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false || 'none',
+        },
+      },
+    }),
 
      importProvidersFrom(NgxSpinnerModule)
 
