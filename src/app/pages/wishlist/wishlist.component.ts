@@ -66,11 +66,10 @@ export class WishlistComponent implements OnInit {
         this.cartService.cartNumber.set(res.numOfCartItems);
         console.log(this.cartService.cartNumber());
 
-        // حذف العنصر من ال wishlist بعد إضافته للسلة
+
         this.wishListDetails = this.wishListDetails.filter(item => item._id !== id);
         this.wishlistService.wishListNumber.set(this.wishListDetails.length);
 
-        // تحديث LocalStorage بعد الحذف
         localStorage.setItem('wishlist', JSON.stringify(this.wishListDetails.map(p => p._id)));
 
         setTimeout(() => {
@@ -86,66 +85,8 @@ export class WishlistComponent implements OnInit {
   }
 
 
-  //  removeItem(id:string):void{
-
-  //     const swalWithBootstrapButtons = Swal.mixin({
-  //       customClass: {
-  //         confirmButton: "bg-green-600 hover:bg-green-700 text-white ms-3 border-transparent font-bold py-2 px-4 rounded",
-  //         cancelButton: "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-  //       },
-  //       buttonsStyling: false
-  //     });
-  //     swalWithBootstrapButtons.fire({
-  //       title: "Are you sure?",
-  //       text: "Are you sure that you want to delete this item ?",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonText: "Yes, delete it     !",
-  //       cancelButtonText: "No, cancel     !",
-
-  //     reverseButtons: true
-
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-
-  //      this.wishlistService.removeItemFromWishList(id).subscribe({
-
-  //       next:(res)=>{
-  //         console.log(res)
-
-  //         this.getWishListData()
-  //         this.wishlistService.wishListNumber.set(res.data.length)
 
 
-
-
-
-  //  swalWithBootstrapButtons.fire({
-  //   title: "Deleted!",
-  //   text: "Your item has been deleted.",
-  //   icon: "success"
-  // });
-
-  //       },
-  //       error:(err)=>{
-  //         console.log(err)
-  //       }
-  //      })
-
-
-  //       } else if (
-
-  //         result.dismiss === Swal.DismissReason.cancel
-  //       ) {
-  //         swalWithBootstrapButtons.fire({
-  //           title: "Cancelled",
-  //           text: "Your item is safe. ",
-  //           icon: "error"
-  //         });
-  //       }
-  //     });
-
-  //   }
 
   removeItem(id: string): void {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -170,7 +111,7 @@ export class WishlistComponent implements OnInit {
           next: (res) => {
             console.log(res);
 
-            // تحديث القائمة بعد الحذف
+
             this.wishListDetails = this.wishListDetails.filter(product => product._id !== id);
             this.wishlistService.wishListNumber.set(this.wishListDetails.length);
             localStorage.setItem('wishlist', JSON.stringify(this.wishListDetails.map(p => p._id))); // تحديث LocalStorage
@@ -196,58 +137,10 @@ export class WishlistComponent implements OnInit {
   }
 
 
-    // clearAllWishList(): void {
-    //   const swalWithBootstrapButtons = Swal.mixin({
-    //     customClass: {
-    //       confirmButton: "bg-green-600 hover:bg-green-700 text-white ms-3 border-transparent font-bold py-2 px-4 rounded",
-    //       cancelButton: "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-    //     },
-    //     buttonsStyling: false
-    //   });
 
-    //   swalWithBootstrapButtons.fire({
-    //     title: "Are you sure?",
-    //     text: "Are you sure that you want to delete all items?",
-    //     icon: "warning",
-    //     showCancelButton: true,
-    //     confirmButtonText: "Yes, delete all!",
-    //     cancelButtonText: "No, cancel!",
-    //     reverseButtons: true
-    //   }).then((result) => {
-    //     if (result.isConfirmed) {
 
-    //       const deleteRequests = this.wishListDetails.map(product =>
-    //         this.wishlistService.removeItemFromWishList(product._id).toPromise()
-    //       );
 
-    //       Promise.all(deleteRequests)
-    //         .then(() => {
-    //           this.wishListDetails = [];
-    //           this.wishlistService.wishListNumber.set(0);
 
-    //           swalWithBootstrapButtons.fire({
-    //             title: "Deleted!",
-    //             text: "All items have been deleted.",
-    //             icon: "success"
-    //           });
-    //         })
-    //         .catch(err => {
-    //           console.log(err);
-    //           swalWithBootstrapButtons.fire({
-    //             title: "Error",
-    //             text: "Failed to delete some items.",
-    //             icon: "error"
-    //           });
-    //         });
-    //     } else if (result.dismiss === Swal.DismissReason.cancel) {
-    //       swalWithBootstrapButtons.fire({
-    //         title: "Cancelled",
-    //         text: "Your items are safe.",
-    //         icon: "error"
-    //       });
-    //     }
-    //   });
-    // }
 
     clearAllWishList(): void {
       const swalWithBootstrapButtons = Swal.mixin({
@@ -276,7 +169,7 @@ export class WishlistComponent implements OnInit {
             .then(() => {
               this.wishListDetails = [];
               this.wishlistService.wishListNumber.set(0);
-              localStorage.removeItem('wishlist'); // مسح LocalStorage عند حذف كل العناصر
+              localStorage.removeItem('wishlist');
 
               swalWithBootstrapButtons.fire({
                 title: "Deleted!",

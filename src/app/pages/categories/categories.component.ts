@@ -137,22 +137,6 @@ updateTabName(tabName: string) {
   }
 
 
-  // addToWishList(id:string):void{
-  //   this.wishlistService.addProductToWishList(id).subscribe({
-  //     next:(res)=>{
-
-  //       console.log(res)
-  //       this.wishlistService.wishListNumber.set(res.data.length)
-  //       this.showSuccess2()
-
-  //     },
-  //     error:(err)=>{
-
-  //       console.log(err)
-
-  //     }
-  //   })
-  // }
 
   toggleWishlist(id: string): void {
     let storedWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');

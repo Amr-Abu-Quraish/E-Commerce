@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit{
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
     if (!this.isDropdownOpen) {
-      this.isSubDropdownOpen = false; // إغلاق الـ sub-dropdown عند إغلاق الـ dropdown الرئيسي
+      this.isSubDropdownOpen = false; 
     }
   }
 

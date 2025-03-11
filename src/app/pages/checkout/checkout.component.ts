@@ -79,58 +79,6 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  // submitForm(): void {
-
-
-  //   if (!this.selectedPaymentMethod) {
-  //     this.messageService.add({
-  //       severity: 'error',
-  //       summary: 'Error',
-  //       detail: 'Please select a payment method before proceeding.'
-  //     });
-  //     return;
-  //   }
-
-
-  //   if(this.selectedPaymentMethod === 'online'){
-  //     this.orderService.checkOutSession(this.cartId,this.checkoutForm.value ).subscribe({
-
-  //       next:(res)=>{
-  //         console.log(res)
-
-  //         if(res.status === 'success'){
-
-  //           open(res.session.url, '_self')
-
-  //         }
-  //       },
-  //       error:(err)=>{
-  //         console.log(err)
-  //       }
-  //     })
-
-  //   }else {
-  //     this.cashPayment()
-  //   }
-
-
-
-  //   if (this.checkoutForm.valid) {
-
-  //     const { details, city, phone } = this.checkoutForm.value;
-
-
-  //     const requestData = { details, city, phone };
-
-  //     console.log(requestData);
-
-
-  //   }
-
-  //   else{
-  //     this.checkoutForm.markAllAsTouched()
-  //   }
-  // }
 
 
   submitForm(): void {
